@@ -1,15 +1,13 @@
 import { TextField, Button } from "@mui/material";
 import { AddTaskOutlined } from "@mui/icons-material";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { TaskFormInput, AddTaskFormProps } from "../interfaces";
 
-interface TaskFormInput {
-  taskName: string;
-}
 
-const AddTaskForm = () => {
+const AddTaskForm: React.FC<AddTaskFormProps> = ({ addTask }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<TaskFormInput>();
-  const onSubmit: SubmitHandler<TaskFormInput> = (data) => {
-    console.log("Form Submitted", data);
+  const onSubmit: SubmitHandler<TaskFormInput> = (FormData) => {
+    addTask(FormData);
   };
 
   return (
