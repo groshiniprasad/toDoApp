@@ -6,7 +6,7 @@ import { Task } from '../interfaces';
 const TaskItem = ({ task, deleteTask, toggleTask }: { task: Task, deleteTask: (id: string) => void, toggleTask: (id: string) => void }) => {
     const { id, taskName, isCompleted } = task;
   return (
-    <ListItem>
+    <ListItem className={isCompleted ? 'task-is-completed' : ''}>
       <ListItemAvatar>
         <Avatar>
           <TaskIcon />
