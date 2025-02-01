@@ -4,6 +4,7 @@ import uuid from "react-uuid";
 import Layout from "./Layout";
 import AddTaskForm from "./AddTaskForm";
 import { TaskFormInput, Task } from "../interfaces";
+import TodoList from "./TodoList";
 
 const TodoPage = () => {
   const [ todoList, setTodoList ] = useState<Task[]>([]);
@@ -17,15 +18,25 @@ const TodoPage = () => {
     setTodoList([...todoList, newTask]);
   };
 
+  const deleteTask = (id: string) => {
+    setTodoList(todoList.filter(task => task.id !== id));
+  };
+
+  const toggleTask = (id: string) => {
+    setTodoList(todoList.map(task => 
+      task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
+    ));
+  };
+
   return (
     <Layout>
         <Box sx={{ mt: 2, width: '50%', mx: 'auto' }}>
             <AddTaskForm addTask={addTask} />
         </Box>
-      <Typography variant="h3" component="h1" align="center">
-        TodoPage
-
-      </Typography>
+        <Box sx={{ mt: 2, width: '50%', mx: 'auto' }}>
+            <Typography variant="h4" align="center">Task List</Typography>
+            <TodoList todoList={todoList} deleteTask={deleteTask} toggleTask={toggleTask} />
+        </Box>
     </Layout>
   );
 };
