@@ -1,8 +1,8 @@
-import React from "react";
+import { ReactNode } from "react";
 import { AppBar, Toolbar, Typography, IconButton,  } from "@mui/material" ;
 import { MenuBookOutlined } from "@mui/icons-material";
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
     <AppBar position="static" className="header">
@@ -18,7 +18,6 @@ const Layout = ({ children }) => {
     {children}
     <Typography component="p" align="center" className="footer">
         &copy; 2025 Task Master
-        
     </Typography>
     </>
   );
