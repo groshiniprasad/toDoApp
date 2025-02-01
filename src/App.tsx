@@ -1,11 +1,12 @@
 import './App.css'
-import './components/TodoList'
 import Todos from './components/TodoPage'
+import Layout from './components/Layout'
 
-function App() {
-
+const App: React.FC = () => {
   return (
+    <Layout>
       <Todos />
+    </Layout>
   )
 }
 

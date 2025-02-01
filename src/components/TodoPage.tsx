@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Typography, Box } from "@mui/material";
 import uuid from "react-uuid";
-import Layout from "./Layout";
 import AddTaskForm from "./AddTaskForm";
 import { TaskFormInput, Task } from "../interfaces";
 import TodoList from "./TodoList";
 
 const TodoPage = () => {
-  const [ todoList, setTodoList ] = useState<Task[]>([]);
-  
+  const [todoList, setTodoList] = useState<Task[]>([]);
+
   const addTask = (task: TaskFormInput) => {
     const newTask: Task = {
       id: uuid(),
@@ -23,21 +22,23 @@ const TodoPage = () => {
   };
 
   const toggleTask = (id: string) => {
-    setTodoList(todoList.map(task => 
+    setTodoList(todoList.map(task =>
       task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
     ));
   };
 
   return (
-    <Layout>
-        <Box sx={{ mt: 2, width: '50%', mx: 'auto' }}>
-            <AddTaskForm addTask={addTask} />
-        </Box>
-        <Box sx={{ mt: 2, width: '50%', mx: 'auto' }}>
-            <Typography variant="h4" align="center">Task List</Typography>
-            <TodoList todoList={todoList} deleteTask={deleteTask} toggleTask={toggleTask} />
-        </Box>
-    </Layout>
+    <>
+      <Box sx={{ mt: 2, width: '50%', mx: 'auto' }}>
+        <AddTaskForm addTask={addTask} />
+      </Box>
+      <Box sx={{ mt: 2, width: '50%', mx: 'auto' }}>
+        <Typography variant="h4" align="center" sx={{ mt: 4, mb: 2, color: 'primary.main', fontFamily: 'Arial' }}>
+          Task List
+        </Typography>
+        <TodoList todoList={todoList} deleteTask={deleteTask} toggleTask={toggleTask} />
+      </Box>
+    </>
   );
 };
 
